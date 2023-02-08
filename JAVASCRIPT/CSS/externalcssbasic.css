@@ -1,0 +1,98 @@
+*{
+    padding: 5px;
+    margin: 5px;
+    text-decoration: none;
+    color: rgb(223, 16, 50);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+ul{
+    list-style-type: none;
+
+}
+li{
+    display: inline-block;
+    background-color: rgb(224, 237, 240);
+
+}
+li:hover{
+    background-color: rgb(172, 214, 93);
+}
+
+nav{
+    
+   border: 0px;
+    text-align: center;
+    margin-right: 100px;
+    margin-left: 100px;
+}
+a:link{
+    color: aqua;
+    cursor: grab;
+    
+}
+a:visited{
+    color: burlywood;
+   
+}
+a:hover{
+    color: slateblue;
+    
+}
+a:active{
+    color: skyblue;
+    
+
+}
+div{
+    display: inline-block;
+    width: 45%;
+    vertical-align: top;
+}
+#first{
+    text-indent: 40px;
+    letter-spacing: 2px;
+    line-height: 2;
+    text-align: justify;
+}
+#second{
+    word-spacing: 3px;
+    line-height: 2;
+}
+#third{
+    line-height: 2;
+    color: chartreuse;
+}
+#four{
+    text-shadow: 2px 2px 5px rgb(7, 241, 7) ;
+    line-height: 3;
+   text-transform: uppercase;
+    color: blue;
+}
+#five{
+    writing-mode: vertical-rl;
+}
+#roundd{
+    border-radius: 50%;
+    max-width: 100%;
+}
+#squaree{
+    width: 70%;
+    border-radius: 500px;
+    box-shadow: 0 20px 5px lightcoral;
+    opacity: 50%;
+}
+.polaride{
+    width: 80%;
+    box-shadow: 0px 2px 5px darkblue;
+    box-sizing: content-box;
+}
+img:hover{
+   background-color: aqua;
+   border-color: black;
+}
+#para{
+    text-align:initial;
+}
+body{
+    background-image: url("images.jpg");
+}
