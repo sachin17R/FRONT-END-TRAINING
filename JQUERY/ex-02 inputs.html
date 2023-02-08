@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../HTML/grid.css">
+    <style>
+        p{
+            font-size: larger;
+            font-style: oblique;
+        }
+    </style>
+    <script src="../jquerylibrary.min.js"></script>
+    <script>
+        $().ready(function(){
+            $("div:first").slideToggle(2000);
+            $("a:first").click(function(){
+                $("div:first").slideDown(2000);
+                $("div:first").css("color","red")
+            })
+            $("div:last").fadeToggle(2000);
+            $("button").click(function(event){
+                event.preventDefault();
+                const detail ={};
+                detail.Name = $("#name").val();
+                detail.Email = $("#email").val();
+                detail.Salary = $("#salary").val();
+
+                $("div:last").text(JSON.stringify(detail));
+
+                $("div:eq(1)").fadeIn(2000);
+                $("div:eq(1)").css("color","blue")
+                $("div:eq(1)").css("font-size","20pt")
+            })
+        })
+    </script>
+</head>
+<body><a href="#">click here for form</a>
+    <div class="col-6">
+    <h1>USER REGISTRATION FORM</h1>
+    <hr>
+    <form action="">
+        <p>
+            Enter Name: <input type="text" id="name" required>
+        </p>
+        <p>
+            Enter Email: <input type="email" id="email">
+        </p>
+        <p>
+            Enter salary: <input type="number" id="salary" min="1000" max="100000">
+        </p>
+        <p>
+            <button type="submit">display</button>
+        </p>
+    </form>
+</div>
+    <div id="displaying" style="text-align: center;"></div>
+</body>
+</html>

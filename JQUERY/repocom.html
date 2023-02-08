@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../JQUERY/repostyle.css">
+    <script src="./repocom.js"></script>
+    <script src="../jquerylibrary.min.js"></script>
+    <script>
+        $().ready(initi)
+        const exprepo = new ExpenseManager();
+        let showRec = {};
+        let finder = 1;
+        function initi() {
+
+            createData();
+            $(".container").children("div").hide();
+            $("th").slideToggle();
+            $("a:first").click(onDisplayTable)
+            $("a:eq(1)").click(onDisplayNewExpenses)
+            $("a:eq(2)").click(onDisplayByDetail)
+            $("a:eq(3)").click(onDisplayByDate)
+            // $("#addnewexp").click(crediv)
+            $("#saveChanges").click(saveChanges)
+            $("#creChanges").click(crechanges)
+            // $("#txtfnd").click(onsearchDate)
+        }
+
+        function saveChanges() {
+            showRec.detail = $("#txtDetail").val();
+            showRec.amount = $("txtAmount").val();
+            showRec.date = new Date($("#txtDate").val());
+            const id = showRec.id;
+            // const expense1 = new Expense(id,showRec.detail,showRec.amount,showRec.date)
+            exprepo.modifyExpense(id, showRec)
+            alert("updated successfully");
+            $(".secDiv").hide(1000);
+        }
+
+        function createData() {
+
+            exprepo.addNewExpense(new Expense("food at hotel", 100, new Date(2022, 5, 11)))
+            exprepo.addNewExpense(new Expense("coffe at road", 50, new Date(2022, 6, 12)))
+            exprepo.addNewExpense(new Expense("drinks at pub", 5000, new Date(2022, 11, 10)))
+            exprepo.addNewExpense(new Expense("nightout in mysore", 5012, new Date(2022, 9, 15)))
+
+        }
+
+        function populate(data) {
+            $("table").find("tr:gt(0)").remove();
+            $.each(data, (index, item) => {
+                // $("table").row() = ""
+                const row = `<tr>
+                    <td>${parseInt(item.id)}</td>
+                    <td>${item.detail}</td>
+                    <td>${item.amount}</td>
+                    <td>${TimeArr(item.date)}</td>
+                    <td><a href="#" onclick="ondisplaying(${item.id})"/>edit`
+
+                $("table").append(row);
+
+            })
+        }
+        //get by id
+        function ondisplaying(Id) {
+
+            $("table").children("tr").slideUp();
+            $(".secDiv").show();
+            showRec = exprepo.getExpensesById(Id);
+            $("#txtId").val(showRec.id);
+            $("#txtDetail").val(showRec.detail);
+            $("#txtAmount").val(showRec.amount);
+            $("#txtDate").val((showRec.date));
+
+        }
+        function TimeArr(time) {
+            const yr = time.getFullYear();
+            const month = time.getMonth();
+            const date = time.getDate();
+            return `${yr}/${month}/${date}`;
+            // return (`${time.getFullYear()}/${time.getMonth() + 1}/${time.getDate()}`)
+        }
+
+        function onDisplayTable() {
+            // $("table").slideup();
+            $(".container").children("div").hide();
+            $(".container").children("div:first").show(2000);
+            $("th").slideDown(1000);
+            const data = exprepo.getAllExpenses();
+            populate(data);
+
+        }
+        function onDisplayNewExpenses() {
+            $(".container").children("div").hide();
+            $(".container").children("div:eq(1)").show(2000);
+            $(".container").children("div.creDiv").show();
+        }
+        function onDisplayByDetail() {
+            $(".container").children("div").hide();
+            $(".container").children("div:eq(2)").show(2000);
+            
+            if (finder == 1) {
+                $(".container").children("div:first").show(2000);
+            } else {
+                $(".container").children("div:first").hide(2000);
+            }
+            searchByDetail();
+
+        }
+        function searchByDetail(){
+            const data1 = prompt("enter detail");
+
+            const data = exprepo.findExpenses(data1);
+            if (data == 0) {
+                alert("no records found")
+                console.log(data);
+            }
+            populate(data)
+
+        }
+        function onDisplayByDate() {
+            $(".container").children("div").hide();
+            $(".container").children("div#srchbydate").show(1000)
+            // $(".container").children("div.fndbtn").show(2000);
+            // $(".container").children("table>tr").show()
+            if (finder == 1) {
+                $(".container").children("div:first").show(2000);
+            } else {
+                $(".container").children("div:first").hide(2000);
+            }
+            onsearchDate();
+
+        }
+
+        function crechanges() {
+            class Expense {
+                id = $("#creId").val()
+                detail = $("#creDetail").val();
+                amount = $("#creAmount").val();
+                date = new Date($("#creDate").val());
+            }
+            let obj = new Expense();
+
+            exprepo.addNewExpense(obj);
+
+            alert("expenses added successfully");
+
+            $("creDiv").val("");
+            $("creDiv").hide("");
+
+        }
+        function onsearchDate() {
+            const date1 = prompt("enter date")
+            console.log(date1)
+
+            const data = exprepo.findExpensesByDate(new Date(date1))
+            console.log(data)
+            if (data == 0) {
+                alert("no records found")
+                console.log(data);
+            }
+            populate(data)
+
+        }
+
+    </script>
+</head>
+
+<body>
+    <h1>Expense Manager Software</h1>
+    <hr>
+    <nav>
+        <ul>
+            <li> <a href="#">view all expenses</a> </li>
+            <li> <a href="#">add new expenses</a> </li>
+            <li> <a href="#">find expenses by detail</a> </li>
+            <li> <a href="#">find expenses by date</a> </li>
+
+
+        </ul>
+    </nav>
+    <div class="container">
+        <div>Table of record
+            <table border="1px" cellpadding="5px" cellspacing="2px">
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Expense Detail</th>
+                    <th>Amount</th>
+                    <th>Date of Expense</th>
+                    <th>options</th>
+
+                </tr>
+            </table>
+        </div>
+        <hr>
+        <div id="addnewexp">Add New Expense</div>
+        <div>Details of Expense</div>
+        <div id="srchbydate">data searched!!!!!!!</div>
+        <hr>
+
+        <div class="secDiv">
+            <h2>details of expense</h2>
+            <p>id :<input id="txtId" disabled></p>
+            <p>details :<input type="text" id="txtDetail"></p>
+            <p>amount :<input type="number" id="txtAmount"></p>
+            <p>Date :<input type="text" id="txtDate"></p>
+            <p><button id="saveChanges">save changes</button> <button>cancel</button></p>
+
+        </div>
+        <div class="creDiv">
+            <h2>add new expense</h2>
+            <p>id: <input type="number" id="creId"></p>
+            <p>details :<input type="text" id="creDetail"></p>
+            <p>amount :<input type="number" id="creAmount"></p>
+            <p>Date :<input type="date" id="creDate"></p>
+            <p><button id="creChanges">save changes</button> <button>cancel</button></p>
+
+        </div>
+        <!-- <div class="fndbtn">
+            <input type="date" id="fnddate"> <button id="txtfnd">search</button>
+            <p id="pDisplay"></p>
+        </div> -->
+    </div>
+</body>
+
+</html>
