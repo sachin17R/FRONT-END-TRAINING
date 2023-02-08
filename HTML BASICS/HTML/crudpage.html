@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./crudoperations.js"></script>
+</head>
+<body>
+    <div>
+        <input type="text" id="txtBook" placeholder="enter your book" >
+        <button onclick="onAddItem()">add</button>
+        <p id="pDisplay" >
+            <ol id="list"/>
+        </p>
+    </div>
+    <script>
+        const onUpdate = function(id){
+            const newbook = prompt("enter new book name");
+            update(id,newbook);
+            populate();
+        }
+
+
+        const onDelete = function(id){
+            deleteItem(id);
+            populate();
+        }
+        
+        const populate = function(){         //populate
+            let ol = document.getElementById("list");
+            ol.innerHTML = "";
+            const data = getAll();
+            for(let i = 0; i < data.length ; i++){
+                const line = `<li type="1">${data[i]}
+                    <a href="#" onclick="onDelete(${i})"> delete<a/>
+                    <a href="#" onclick="onUpdate(${i})"> edit <a/>  
+
+                    </li>`
+                ol.innerHTML += line;
+            }
+
+        }
+
+        const onAddItem = function(){         
+            const name = document.getElementById("txtBook").value;
+            addItem(name);
+            // alert("added")
+            populate();
+        }
+
+        // addItem("Sachin");
+        // addItem("Tendulkar");
+        // addItem("100");
+        // addItem("Century");
+        // document.getElementById("pDisplay").innerText = myBooks;
+    </script>
+</body>
+</html>

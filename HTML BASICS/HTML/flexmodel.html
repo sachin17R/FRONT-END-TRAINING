@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: flex;
+            flex-direction: row;
+            /* flex-wrap: wrap; */
+            flex-flow: row wrap;
+            align-items: stretch;
+            background-color: rgb(208, 208, 233);
+            padding: 10px;
+            text-align: center;
+
+        }
+        .item{
+            /* width: 200px; */
+            flex-basis: 100px;
+            flex-grow: 3;
+      
+            border: 2px solid red;
+            margin: 10px;
+        }
+
+        .menu{
+            width: 20%;
+            float: left;
+            border: 2px solid salmon;
+            background-color: aqua;
+            padding-top: 50px;
+        }
+
+    </style>
+    <link rel="stylesheet" href="D:\starmark\HTML\grid.css">
+</head>
+<body>
+    <div class="container">
+        <div class="item" style="flex-shrink: 0;">item1</div>
+        <div class="item">item2</div>
+        <div class="item" style="flex-grow: 3;">item3</div>
+        <div class="item">item4</div>
+        <div class="item">item5</div>
+        <div class="item">item5</div>
+        <div class="item">item5</div>
+    </div>
+
+
+
+
+    <hr><hr><hr><hr><br><br><br><br><br>
+    <div class="container">
+        <p class="col-1">main menu</p>
+        <p class="col-5">child menu</p>
+        <p class="col-8">p1</p>
+        <p class="col-10">p2</p>
+    </div>
+</body>
+</html>

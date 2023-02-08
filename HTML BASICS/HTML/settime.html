@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function setInterval11(){
+            setInterval(() => {
+                const curret = new Date();
+                const hr = curret.getHours();
+                const min = curret.getMinutes();
+                const sec = curret.getSeconds();
+
+                const showq = `<h1> ${hr}:: ${min}::${sec}</h1`;
+                    document.getElementById("labelid").innerHTML = showq
+            }, 1000);
+
+        }
+       function setTimeout111(){
+            setTimeout(() => {
+                alert("maneg nadi")
+            }, 1000);
+        }
+       
+    </script>
+</head>
+<body>
+    <h1>time based function</h1>
+        <label id="labelid"></label> <br><br>
+    <button onclick="setTimeout111()">setTimeout</button>
+    <button onclick="setInterval11()">setInterval</button>
+</body>
+</html>
+

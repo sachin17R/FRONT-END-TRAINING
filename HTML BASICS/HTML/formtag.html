@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    let data = new map();
+    let msg = ""
+
+    function signUp(uname,pwd){
+        if(data.has(uname)){
+            throw "user exists"
+        }
+        data.set(uname, pwd);
+    }
+
+    function signIn(uname, pwd){
+        if(!data.has(uname)){
+            throw " username not found"
+        }
+        else{
+            const success = "login successfull";
+            const failure = "login failed"
+            
+            if(data.get(uname == pwd)){
+                return success;
+            }else{
+                return failure;
+            }
+
+        }
+    }
+
+
+</script>
+<body>
+    <center><h1>user validation</h1></center>
+    <hr><hr>
+    <div>
+        <h2>
+            login page
+        </h2>
+        user name: <input type="text" id="userName" placeholder="user name"><br><br>
+        password : <input type="password" id="password">
+        <br><br>
+        <button type="button">login</button>
+    </div>
+    <br><br><hr><hr>
+    <div>
+        <h2>
+            registration page
+        </h2>
+        user name : <input type="text" id="regUser"><br><br>
+        password  : <input type="text" id="regPass"><br><br>
+        <button type="button" onclick="onRegister()">register</button>
+    </div>
+</body>
+</html>

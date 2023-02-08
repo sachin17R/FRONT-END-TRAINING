@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function onSave(){
+            const name = document.getElementById("data").value;
+            localStorage.setItem("item", name);
+        }
+
+        function onView(){
+            const local = localStorage.getItem("item");
+            document.getElementById("para").innerText = local;
+        }
+
+        function onPress(){
+            const inf = {};
+            inf.name = document.getElementById("name").value;
+            inf.id = document.getElementById("age").value;
+            inf.address = document.getElementById("address").value;
+
+            const Jsondata = JSON.stringify(inf);
+
+            localStorage.setItem("item1", Jsondata);
+
+        }
+
+    </script>
+</head>
+<body>
+    <h1>local storage example</h1>
+    <hr>
+    <hr>
+    <div>
+        enter your data:  <input type="text" id="data" placeholder="enter data">  
+         <button type="button" onclick="onSave()" >save</button>
+        <br><br>
+        <button onclick="onView()">view data</button>
+        <p id="para"></p>
+
+    </div>
+    <hr>
+    <hr>
+    <div>
+        name: <input type="text" id="name" ><br><br>
+        age : <input type="number" id="age"><br><br>
+        address : <input type="text" id="address"> <br><br>
+        <button onclick="onPress()">click</button>
+    </div>
+</body>
+</html>

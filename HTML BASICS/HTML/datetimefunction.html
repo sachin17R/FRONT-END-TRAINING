@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+        function showDate(){
+            // alert(new Date);
+            // alert(new Date(1999,04,17));
+            // alert(new Date("12/12/1999"))
+
+            const selectdate = new Date(document.getElementById("txtDate").value);
+            displayDate(selectdate);
+        }
+        function createDate(){
+             date1 = parseInt(prompt("enter the date"));
+             month1 = parseInt(prompt("enter month"));
+             Year1 = parseInt(prompt("enter the year"))
+
+            return (new Date(date1, month1,Year1));
+
+        }
+        function displayDate(date){
+            //It should create a div, and display the Year, Month, Date, Day, Hour, Min and Sec. 
+            const div = document.createElement("div");
+            div.style.border = "5px solid blue";
+            div.style.backgroundColor = "#aaa878"
+            const year = date.getFullYear();
+            const month = months[date.getMonth()];
+            const dt = date.getDate();
+            const hour = date.getHours();
+            const min = date.getMinutes();
+            const sec = date.getSeconds();
+            div.innerHTML = `The Year: ${year}<br/>
+            The Month: ${month}<br/>
+            The Date: ${dt}<br/>
+            The Hour: ${hour}<br/>
+            The Minutes: ${min}<br/>
+            The Seconds: ${sec}<br/>
+            `;
+            document.body.appendChild(div);
+        }
+
+
+    </script>
+</head>
+<body>
+    <h1>Date and Time based Functions</h1>
+    <div>
+        <!-- <button onclick="showDate()">show date & time</button> -->
+
+      enter date :  <input type="date"  id="txtDate">
+      <button onclick="showDate()">show results</button>
+        <p id="pDisplay"></p>
+
+    </div>
+    
+</body>
+</html>
